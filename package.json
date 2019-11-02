@@ -2,10 +2,10 @@
   "name": "react-focuslostbox",
   "version": "1.0.0",
   "description": "A tiny component that fires an callback when focus completely leaves the container.",
-  "main": "index.html",
+  "main": "src/examples/index.html",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build src/index.html"
+    "start": "parcel src/examples/index.html --open",
+    "build": "parcel build src/lib/index.jsx"
   },
   "dependencies": {
     "prop-types": "15.7.2",
