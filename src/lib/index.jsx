@@ -7,6 +7,16 @@ const _computeStyle = ({outline, style}) => !outline
     ? {outlineWidth: 0, ...style}
     : style;
 
+const _computeTabIndex = ({allowDirectRefocus, hasMovedFocus}) => !allowDirectRefocus && hasMovedFocus ? -1 : 0
+
+const _makeBlurHandler = ({box, setHasMovedFocus, onFocusLost}) => domEvent => {
+    const isOutsideBox = domEvent.relatedTarget && !box.current.contains(domEvent.relatedTarget);
+
+    setHasMovedFocus(true);
+    if (!domEvent.relatedTarget || isOutsideBox)
+        onFocusLost();
+};
+
 export const FocusArea = ({
     onFocusLost,
     autoFocus,
@@ -23,20 +33,12 @@ export const FocusArea = ({
             box.current.focus();
     }, [box, autoFocus]);
 
-    var handleBlur = domEvent => {
-        const isOutsideBox = domEvent.relatedTarget && !box.current.contains(domEvent.relatedTarget);
-
-        setHasMovedFocus(true);
-        if (!domEvent.relatedTarget || isOutsideBox)
-            onFocusLost();
-    };
-
     return (
         <div
             {...props}
             ref={box}
-            onBlur={handleBlur}
-            tabIndex={!allowDirectRefocus && hasMovedFocus ? -1 : 0}
+            onBlur={_makeBlurHandler({box, setHasMovedFocus, onFocusLost})}
+            tabIndex={_computeTabIndex({allowDirectRefocus, hasMovedFocus})}
             style={_computeStyle({outline, style})}
         />
     );

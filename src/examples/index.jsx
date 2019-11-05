@@ -79,11 +79,15 @@ const ExampleModal = () => {
                     >
                         <h1 id="example-modal-header">Modal Window</h1>
                         This is a modal!
+                        <div>
+                            <input type="text" />
+                            <button type="button">Some other button</button>
+                        </div>
                         <button
                             type="button"
                             onClick={() => setVisible(false)}
                         >
-                            Okay!
+                            Dismiss Modal
                         </button>
                     </FocusArea>
                 </div>
