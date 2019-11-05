@@ -26,9 +26,9 @@ Think of this as a more accessible, keyboard-friendly alternative to `onClickOut
 
 ## Props
 
-- `onFocusLost`: function to be fired when focus leaves the area
-- `aria-labelledby`: pointer to accessibility label used to describe the area (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)
-- `aria-label`: (alternative to `aria-labelledby`) accessibility label used to describe the area (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute)
+- `onFocusLost` **required**: function to be fired when focus leaves the area
+- `aria-labelledby` **labelledby or label is required**: pointer to accessibility label used to describe the area (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)
+- `aria-label` **labelledby or label is required**: (alternative to `aria-labelledby`) accessibility label used to describe the area (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute)
 - `role` (default: `region`): accessibility property used to provide semantic purpose of this area (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques)
 - `autoFocus` (default: `true`): by default, FocusArea will receive focus as soon as they are rendered. If this area is rendered before focus monitoring is desired, set this to false.
 - `outline`: by default, FocusArea will not show a visible focus outline. Either define `style` or set this to true to leave outline as browser default.
