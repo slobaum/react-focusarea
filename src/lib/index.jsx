@@ -1,8 +1,20 @@
 import * as React from 'react';
 import propTypes from 'prop-types';
+import {AriaLabelPropType} from './propTypes';
 
 
-export const FocusLostBox = ({onFocusLost, autoFocus, ...props}) => {
+const _computeStyle = ({outline, style}) => !outline
+    ? {outlineWidth: 0, ...style}
+    : style;
+
+export const FocusArea = ({
+    onFocusLost,
+    autoFocus,
+    outline,
+    style,
+    allowDirectRefocus,
+    ...props
+}) => {
     const box = React.useRef(null);
     const [hasMovedFocus, setHasMovedFocus] = React.useState(false);
 
@@ -16,7 +28,7 @@ export const FocusLostBox = ({onFocusLost, autoFocus, ...props}) => {
 
         setHasMovedFocus(true);
         if (!domEvent.relatedTarget || isOutsideBox)
-            onFocusLost && onFocusLost();
+            onFocusLost();
     };
 
     return (
@@ -24,10 +36,21 @@ export const FocusLostBox = ({onFocusLost, autoFocus, ...props}) => {
             {...props}
             ref={box}
             onBlur={handleBlur}
-            tabIndex={hasMovedFocus ? -1 : 0}
+            tabIndex={!allowDirectRefocus && hasMovedFocus ? -1 : 0}
+            style={_computeStyle({outline, style})}
         />
     );
 };
-FocusLostBox.propTypes = {
-  onFocusLost: propTypes.func
+FocusArea.propTypes = {
+    'aria-label': AriaLabelPropType,
+    'aria-labelledby': AriaLabelPropType,
+    onFocusLost: propTypes.func.required,
+    role: propTypes.string,
+    autoFocus: propTypes.bool,
+    outline: propTypes.bool,
+    allowDirectRefocus: propTypes.bool,
+};
+FocusArea.defaultProps = {
+    role: 'region',
+    autoFocus: true,
 };

@@ -1,13 +1,39 @@
 import * as React from 'react';
 import {render} from 'react-dom';
-import {FocusLostBox} from '../lib';
+import {FocusArea} from '../lib';
 
+
+const ExampleTriggerOutside = () => {
+    const [visible, setVisible] = React.useState(false);
+
+    return (
+        <div>
+             <button type="button" onClick={() => setVisible(true)}>
+                Show menu (with trigger outside box)
+             </button>
+             {visible && (
+                 <FocusArea
+                    onFocusLost={() => setVisible(false)}
+                      aria-label="Dropdown with links"
+                      style={{backgroundColor: '#ccc'}}
+                 >
+                     <a href="http://www.google.com">Google</a>
+                     <a href="http://www.yahoo.com">Yahoo</a>
+                 </FocusArea>
+             )}
+        </div>
+    );
+};
 
 const ExampleTriggerInside = () => {
     const [visible, setVisible] = React.useState(false);
 
     return (
-        <FocusLostBox onFocusLost={() => setVisible(false)}>
+        <FocusArea
+            onFocusLost={() => setVisible(false)}
+            autoFocus={false}
+            aria-label="Dropdown with links"
+        >
             <button type="button" onClick={() => setVisible(true)}>
                 Show menu (with trigger inside box)
             </button>
@@ -17,29 +43,7 @@ const ExampleTriggerInside = () => {
                     <a href="http://www.yahoo.com">Yahoo</a>
                 </div>
             )}
-        </FocusLostBox>
-    );
-};
-
-const ExampleTriggerOutside = () => {
-    const [visible, setVisible] = React.useState(false);
-
-    return (
-        <div>
-             <button type="button" onClick={() => setVisible(true)}>
-                Show menu (with trigger outside box and autofocus)
-             </button>
-             {visible && (
-                 <FocusLostBox
-                      onFocusLost={() => setVisible(false)}
-                      autoFocus={true}
-                      style={{backgroundColor: '#ccc'}}
-                 >
-                     <a href="http://www.google.com">Google</a>
-                     <a href="http://www.yahoo.com">Yahoo</a>
-                 </FocusLostBox>
-             )}
-        </div>
+        </FocusArea>
     );
 };
 
@@ -63,14 +67,17 @@ const ExampleModal = () => {
                     bottom: 0,
                     left: 0,
                 }}>
-                    <FocusLostBox
+                    <FocusArea
                         onFocusLost={() => setVisible(false)}
-                        autoFocus={true}
+                        aria-labelledby="example-modal-header"
+                        role="dialog"
+                        allowDirectRefocus={true}
                         style={{
                             backgroundColor: 'white',
                             padding: '2em',
                         }}
                     >
+                        <h1 id="example-modal-header">Modal Window</h1>
                         This is a modal!
                         <button
                             type="button"
@@ -78,7 +85,7 @@ const ExampleModal = () => {
                         >
                             Okay!
                         </button>
-                    </FocusLostBox>
+                    </FocusArea>
                 </div>
             )}
         </div>
@@ -87,8 +94,8 @@ const ExampleModal = () => {
 
 const App = () => (
     <React.Fragment>
-        <ExampleTriggerInside />
         <ExampleTriggerOutside />
+        <ExampleTriggerInside />
         <ExampleModal />
     </React.Fragment>
 );
