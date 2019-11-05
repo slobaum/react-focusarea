@@ -14,8 +14,8 @@ const ExampleTriggerOutside = () => {
              {visible && (
                  <FocusArea
                     onFocusLost={() => setVisible(false)}
-                      aria-label="Dropdown with links"
-                      style={{backgroundColor: '#ccc'}}
+                    aria-label="Dropdown with links"
+                    style={{backgroundColor: '#ccc'}}
                  >
                      <a href="http://www.google.com">Google</a>
                      <a href="http://www.yahoo.com">Yahoo</a>
