@@ -26,10 +26,10 @@ Think of this as a more accessible, keyboard-friendly alternative to `onClickOut
 
 ## Props
 
-- **onFocusLost**: function to be fired when focus leaves the area
-- **aria-label**: description
-- **aria-labelledby**: description
-- **role** (default: "region"): description
-- **autoFocus** (default: true): description
-- **outline**: description
-- **allowDirectRefocus**: description
+- `onFocusLost`: function to be fired when focus leaves the area
+- `aria-label`: description
+- `aria-labelledby`: description
+- `role` (default: `region`): description
+- `autoFocus` (default: `true`): description
+- `outline`: description
+- `allowDirectRefocus`: description
