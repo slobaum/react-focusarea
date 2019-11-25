@@ -2,10 +2,10 @@
   "name": "react-focusarea",
   "version": "1.0.0",
   "description": "A tiny component that fires an callback when focus completely leaves the container.",
-  "main": "src/lib/index.jsx",
+  "main": "src/lib/index.js",
   "scripts": {
     "start": "parcel src/examples/index.html --open",
-    "build": "parcel build src/lib/index.jsx",
+    "build": "parcel build src/lib/index.js",
     "test": "jest"
   },
   "dependencies": {
