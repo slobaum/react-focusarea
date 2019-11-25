@@ -3,29 +3,29 @@ import {render} from 'react-dom';
 import {FocusArea} from '../lib';
 
 
-const ExampleTriggerOutside = () => {
+const ExampleDropdownTriggerOutside = () => {
     const [visible, setVisible] = React.useState(false);
 
     return (
         <div>
-             <button type="button" onClick={() => setVisible(true)}>
+            <button type="button" onClick={() => setVisible(true)}>
                 Show menu (with trigger outside box)
-             </button>
-             {visible && (
-                 <FocusArea
+            </button>
+            {visible && (
+                <FocusArea
                     onFocusLost={() => setVisible(false)}
                     aria-label="Dropdown with links"
                     style={{backgroundColor: '#ccc'}}
-                 >
-                     <a href="http://www.google.com">Google</a>
-                     <a href="http://www.yahoo.com">Yahoo</a>
-                 </FocusArea>
-             )}
+                >
+                    <a href="http://www.google.com">Google</a>
+                    <a href="http://www.yahoo.com">Yahoo</a>
+                </FocusArea>
+            )}
         </div>
     );
 };
 
-const ExampleTriggerInside = () => {
+const ExampleDropdownTriggerInside = () => {
     const [visible, setVisible] = React.useState(false);
 
     return (
@@ -98,8 +98,8 @@ const ExampleModal = () => {
 
 const App = () => (
     <React.Fragment>
-        <ExampleTriggerOutside />
-        <ExampleTriggerInside />
+        <ExampleDropdownTriggerOutside />
+        <ExampleDropdownTriggerInside />
         <ExampleModal />
     </React.Fragment>
 );
