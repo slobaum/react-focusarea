@@ -1,6 +1,7 @@
 import propTypes from 'prop-types';
 import {AriaLabelPropType} from './propTypes';
 
+
 describe('AriaLabelPropType', () => {
 
     beforeEach(() => {

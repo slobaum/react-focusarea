@@ -3,13 +3,13 @@ import propTypes from 'prop-types';
 import {AriaLabelPropType} from './propTypes';
 
 
-const _computeStyle = ({outline, style}) => !outline
+export const _computeStyle = ({outline, style}) => !outline
     ? {outlineWidth: 0, ...style}
     : style;
 
-const _computeTabIndex = ({allowDirectRefocus, hasMovedFocus}) => !allowDirectRefocus && hasMovedFocus ? -1 : 0
+export const _computeTabIndex = ({allowDirectRefocus, hasMovedFocus}) => !allowDirectRefocus && hasMovedFocus ? -1 : 0
 
-const _makeBlurHandler = ({box, setHasMovedFocus, onFocusLost}) => domEvent => {
+export const _makeBlurHandler = ({box, setHasMovedFocus, onFocusLost}) => domEvent => {
     const isOutsideBox = domEvent.relatedTarget && !box.current.contains(domEvent.relatedTarget);
 
     setHasMovedFocus(true);
