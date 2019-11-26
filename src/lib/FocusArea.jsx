@@ -1,6 +1,7 @@
 import * as React from 'react';
 import propTypes from 'prop-types';
 import {AriaLabelPropType} from './propTypes';
+import {useAutofocusRef} from './useAutofocusRef';
 
 
 export const _computeStyle = ({outline, style}) => !outline
@@ -25,13 +26,8 @@ export const FocusArea = ({
     allowDirectRefocus,
     ...props
 }) => {
-    const box = React.useRef(null);
+    const box = useAutofocusRef(autoFocus);
     const [hasMovedFocus, setHasMovedFocus] = React.useState(false);
-
-    React.useEffect(() => {
-        if (autoFocus)
-            box.current.focus();
-    }, [box, autoFocus]);
 
     return (
         <div
