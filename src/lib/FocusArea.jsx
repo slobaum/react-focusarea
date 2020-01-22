@@ -42,7 +42,7 @@ export const FocusArea = ({
 FocusArea.propTypes = {
     'aria-label': AriaLabelPropType,
     'aria-labelledby': AriaLabelPropType,
-    onFocusLost: propTypes.func.required,
+    onFocusLost: propTypes.func.isRequired,
     role: propTypes.string,
     autoFocus: propTypes.bool,
     outline: propTypes.bool,
