@@ -37,17 +37,53 @@ describe('_computeStyle', () => {
 });
 
 describe('_computeTabIndex', () => {
-    test('should return 0 if allowDirectRefocus', () => {
-        expect(_computeTabIndex({allowDirectRefocus: true, hasMovedFocus: false}))
-            .toBe(0);
-    });
-    test('should return 0 if not hasMovedFocus', () => {
-        expect(_computeTabIndex({allowDirectRefocus: false, hasMovedFocus: false}))
-            .toBe(0);
-    });
-    test('should return -1 if not allowing direct refocus and has moved', () => {
-        expect(_computeTabIndex({allowDirectRefocus: false, hasMovedFocus: true}))
-            .toBe(-1);
+    [
+        {
+            result: -1,
+            data: [false, false, false],
+        },
+        {
+            result: -1,
+            data: [true, false, false],
+        },
+        {
+            result: -1,
+            data: [false, true, false],
+        },
+        {
+            result: 0,
+            data: [false, false, true],
+        },
+        {
+            result: 0,
+            data: [true, false, true],
+        },
+        {
+            result: -1,
+            data: [false, true, true],
+        },
+        {
+            result: -1,
+            data: [true, true, false],
+        },
+        {
+            result: 0,
+            data: [true, true, true],
+        },
+    ].forEach(config => {
+        const {
+            result,
+            data: [allowDirectRefocus, hasMovedFocus, autoFocus],
+        } = config;
+
+        test(`return ${result} if allowDirectRefocus is ${allowDirectRefocus}, hasMovedFocus is ${hasMovedFocus}, autoFocus is ${autoFocus}`, () => {
+            expect(_computeTabIndex({
+                allowDirectRefocus,
+                hasMovedFocus,
+                autoFocus,
+            }))
+                .toBe(result);
+        });
     });
 });
 

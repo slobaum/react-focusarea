@@ -8,7 +8,21 @@ export const _computeStyle = ({outline, style}) => !outline
     ? {outlineWidth: 0, ...style}
     : style;
 
-export const _computeTabIndex = ({allowDirectRefocus, hasMovedFocus}) => !allowDirectRefocus && hasMovedFocus ? -1 : 0
+export const _computeTabIndex = ({
+    allowDirectRefocus,
+    hasMovedFocus,
+    autoFocus
+}) => {
+    // if we aren't autofocusing, it most likely means
+    // the trigger is inside the focusarea. focus is
+    // already captured in the box.
+    if (!autoFocus)
+        return -1;
+    if (!allowDirectRefocus && hasMovedFocus)
+        return -1;
+
+    return 0;
+};
 
 export const _makeBlurHandler = ({box, setHasMovedFocus, onFocusLost}) => domEvent => {
     const isOutsideBox = domEvent.relatedTarget && !box.current.contains(domEvent.relatedTarget);
@@ -34,7 +48,7 @@ export const FocusArea = ({
             {...props}
             ref={box}
             onBlur={_makeBlurHandler({box, setHasMovedFocus, onFocusLost})}
-            tabIndex={_computeTabIndex({allowDirectRefocus, hasMovedFocus})}
+            tabIndex={_computeTabIndex({allowDirectRefocus, hasMovedFocus, autoFocus})}
             style={_computeStyle({outline, style})}
         />
     );
