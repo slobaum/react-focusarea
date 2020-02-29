@@ -2,24 +2,39 @@
   "name": "react-focusarea",
   "version": "1.1.0",
   "description": "A tiny component that fires an callback when focus completely leaves the container.",
-  "main": "src/lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "parcel src/examples/index.html --open",
     "build": "parcel build src/lib/index.js",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "version": "npm run build"
   },
+  "files": [
+    "LICENSE.txt",
+    "package.json",
+    "README.md",
+    "dist/index.js",
+    "src/lib/*"
+  ],
   "peerDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.8",
-    "react-dom": "^16.8"
+    "prop-types": "~15.7.2",
+    "react": "~16.8",
+    "react-dom": "~16.8"
   },
   "devDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.8",
-    "react-dom": "^16.8",
-    "jest": "24.9.0",
+    "babel-core": "~6.26.3",
     "babel-jest": "24.9.0",
-    "parcel-bundler": "^1.6.1"
+    "babel-plugin-transform-object-rest-spread": "~6.26.0",
+    "babel-plugin-transform-react-jsx": "~6.24.1",
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "babel-preset-env": "~1.7.0",
+    "babel-preset-react": "~6.24.1",
+    "jest": "24.9.0",
+    "parcel-bundler": "~1.6.1",
+    "prop-types": "~15.7.2",
+    "react": "~16.8",
+    "react-dom": "~16.8"
   },
   "keywords": [],
   "dependencies": {},
