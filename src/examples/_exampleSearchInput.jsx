@@ -49,6 +49,7 @@ export const SearchInput = () => {
             onFocusLost={() => setFocused(false)}
             autoFocus={false}
             style={_getFocusAreaStyles(focused)}
+            aria-label="Example search input"
         >
             <input
                 type='text'
